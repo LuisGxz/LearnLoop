@@ -48,8 +48,7 @@ export const routes: Routes = [
   },
   {
     path: 'about',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'About' },
+    loadComponent: () => import('./pages/about').then((m) => m.About),
   },
   { path: '**', redirectTo: '' },
 ];

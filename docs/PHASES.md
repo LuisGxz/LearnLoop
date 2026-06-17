@@ -59,9 +59,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] **Panel instructor** `/teach`: `mine()` con cover, nivel, conteos, **Edit/View/Delete** (confirm). **Course builder** `/teach/new` + `/teach/:id/edit`: formularios reactivos anidados **módulos → lecciones (tipo/min/contenido) → quiz opcional → preguntas → opciones** (radio de correcta, swatches de cover, validación). `CourseService.create/update/delete`.
 - [x] Verificado funcional: **crear curso end-to-end** (builder → `/course/5` → aparece en `/teach`), edit hidrata, delete, guards, **0 console.error**. Screenshots login/teach/learning/builder 390/768/1280. Limpieza del curso de prueba. Build verde.
 
-## Fase 9 — Demo guiada + /about
-- [ ] Login orientador, badge de rol (can/can't), tour coach-marks por rol, panel "Cómo explorar", empty states que enseñan, hint cross-rol ("crea un curso como instructor y tómalo como estudiante").
-- [ ] `/about` pública a paridad FinPulse (bilingüe, todas las secciones + diagrama + tabla de patrones).
+## Fase 9 — Demo guiada + /about ✅
+- [x] **Capa de demo**: `TourService` + `TourOverlay` (**spotlight** box-shadow cutout + tooltip clamped al viewport, scrollIntoView, role-aware, **auto-start una vez** por navegador en el catálogo, Skip/Back/Next, reposición en resize/scroll). `HelpLauncher` flotante "Cómo explorar" con **aha cross-rol primero**, **badge de rol** "Demo · {rol}" can/can't (cuando hay sesión), **escenarios** por rol, cuentas demo y **replay** del tour. `data-tour` en brand/nav/catalog/help.
+- [x] Login orientador (F8) + empty states que enseñan (F5/F7/F8) + hint cross-rol.
+- [x] **`/about`** pública bilingüe a paridad FinPulse: lead + chips + botones + **credenciales demo** · Alcance (bullets) · Auth/seguridad · Integridad del dominio · Performance/UX · Testing · **Arquitectura + diagrama** ASCII · **Tabla de patrones** · Decisiones/trade-offs + link a TECHNICAL.md.
+- [x] Verificado: tour auto-start + spotlight, help panel, /about (3 breakpoints), **0 console.error**. Build verde.
 
 ## Fase 10 — Pulido + tests + deploy
 - [ ] Responsive 3 breakpoints (screenshots), animaciones, 0 console.error. E2E (flujo + tour). README + TECHNICAL.md. CI.

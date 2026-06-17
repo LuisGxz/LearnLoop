@@ -22,7 +22,7 @@ interface NavItem {
     <header class="sticky top-0 z-50 border-b border-ink-200 bg-ink-50/90 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <!-- Brand -->
-        <a routerLink="/" class="flex items-center gap-2.5">
+        <a routerLink="/" data-tour="brand" class="flex items-center gap-2.5">
           <span class="grid h-8 w-8 place-items-center rounded-xl bg-grow-600 text-white">
             <lucide-icon name="infinity" class="h-4 w-4" />
           </span>
@@ -34,6 +34,7 @@ interface NavItem {
           @for (item of nav(); track item.path) {
             <a
               [routerLink]="item.path"
+              [attr.data-tour]="item.path !== '/' && item.path !== '/about' ? 'role-nav' : null"
               routerLinkActive="bg-grow-100 text-grow-600"
               [routerLinkActiveOptions]="{ exact: item.exact }"
               class="rounded-full px-3.5 py-2 text-sm font-bold text-ink-600 transition-colors hover:bg-ink-100"

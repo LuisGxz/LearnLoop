@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { CourseService } from '../core/courses/course.service';
 import { AuthService } from '../core/auth/auth.service';
+import { TourService } from '../core/demo/tour.service';
 import { LanguageService } from '../core/i18n/language.service';
 import { TPipe } from '../core/i18n/t.pipe';
 import { ApiError } from '../core/api/api-error';
@@ -93,7 +94,7 @@ type Stat = { icon: string; tone: string; value: string; label: string };
           [body]="('catalog.empty.body' | t)"
         />
       } @else {
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div data-tour="catalog" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           @for (c of courses(); track c.id) {
             <ll-course-card [course]="c" />
           }
@@ -106,6 +107,7 @@ export class Catalog {
   protected readonly auth = inject(AuthService);
   private readonly i18n = inject(LanguageService);
   private readonly courseSvc = inject(CourseService);
+  private readonly tour = inject(TourService);
 
   protected readonly loading = signal(true);
   protected readonly error = signal<string | null>(null);
@@ -142,6 +144,8 @@ export class Catalog {
     this.error.set(null);
     try {
       this.all.set(await this.courseSvc.catalog());
+      // Auto-start the guided tour once, after the grid has painted.
+      if (typeof window !== 'undefined') setTimeout(() => this.tour.maybeAutoStart(), 600);
     } catch (err) {
       this.error.set(ApiError.from(err).message);
     } finally {
