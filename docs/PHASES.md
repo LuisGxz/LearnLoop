@@ -35,8 +35,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] **Primitivas**: `ll-progress-bar` (animada, a11y), `ll-spinner`, `ll-skeleton`, `ll-empty-state`, `ll-error-state` (retry + i18n), `ll-badge-chip` (tonos grow/sun/berry). Iconos **lucide-angular** (pick global).
 - [x] Build verde. Screenshots 390/768/1280 (`scripts/shots.mjs`, recipe `MSYS_NO_PATHCONV=1`) + **0 console.error** en `/`,`/about`,`/login` y toggle idioma.
 
-## Fase 5 — Catálogo de cursos
-- [ ] Grid de cursos con thumbnails (gradiente), progreso, badges New/Done; saludo + meta semanal.
+## Fase 5 — Catálogo de cursos ✅
+- [x] `CourseService` (catalog/mine/detail) + `Catalog` page (ruta `''`, reemplaza el home). **Stats strip** real para signed-in (saludo + nombre, racha, XP, inscritos, progreso medio computado de los cursos del viewer) y **hero** para signed-out con CTA.
+- [x] `CourseCard` reusable: cover **gradiente** (`t-1..t-4` → CSS via `cover-gradient.ts`), badge **Done** (100%) / **New** (no inscrito), chip de nivel, categoría, instructor, **barra de progreso** + % si inscrito (meta módulos/lecciones/min si no), "▶ Continue". Orden: en-progreso → nuevos → completados. Link a `/course/:id` (placeholder hasta F6).
+- [x] Estados **loading** (skeletons de card), **empty** (enseña) y **error** (retry). Limpieza: borrado curso de prueba "My Course" (basura de curls F3).
+- [x] Screenshots 390/768/1280 guest + estudiante (gradientes, stats, progreso, badges) con datos reales (Docker MySQL + seed). **0 console.error** (guest + authed + toggle ES). Build verde.
 
 ## Fase 6 — Vista de lección
 - [ ] Player (placeholder video) + lista de módulos/lecciones lateral + barra de progreso del curso; completar lección (+XP, animación).
@@ -57,4 +60,4 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 
 ---
 
-### Estado actual: **Fases 0–4 ✅** (backend completo + frontend foundation) · **siguiente: Fase 5 — Catálogo de cursos**
+### Estado actual: **Fases 0–5 ✅** (backend completo + foundation + catálogo) · **siguiente: Fase 6 — Vista de lección**

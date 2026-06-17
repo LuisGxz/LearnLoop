@@ -9,7 +9,12 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('./pages/home').then((m) => m.Home),
+    loadComponent: () => import('./pages/catalog').then((m) => m.Catalog),
+  },
+  {
+    path: 'course/:id',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'Course' },
   },
   {
     path: 'login',
