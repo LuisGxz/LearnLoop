@@ -9,6 +9,12 @@ frontend/node_modules/
 frontend/dist/
 frontend/.angular/
 
+# Playwright (E2E artifacts; committed screenshots live in frontend/docs/screenshots)
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+frontend/.playwright/
+
 # Secrets / env
 .env
 .env.*
