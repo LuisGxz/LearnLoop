@@ -17,13 +17,11 @@ export const routes: Routes = [
   },
   {
     path: 'quiz/:id',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'Quiz' },
+    loadComponent: () => import('./pages/quiz').then((m) => m.Quiz),
   },
   {
     path: 'certificate/:id',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'Certificate' },
+    loadComponent: () => import('./pages/certificate').then((m) => m.Certificate),
   },
   {
     path: 'login',

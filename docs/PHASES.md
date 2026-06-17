@@ -47,8 +47,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] **Completar lección**: gating (no auth → /login?redirect; no inscrito → Enroll; inscrito → "Complete +N XP") → patch local del snapshot, **XP flash** flotante (anim, `prefers-reduced-motion`), avance a la siguiente sin completar, callout "Course complete!" + link a certificado al 100%.
 - [x] Verificado funcional: completar lección **+50 XP** (620→670) + flash + 0 console.error. Screenshots 390/768/1280 (estudiante). Build verde.
 
-## Fase 7 — Quiz interactivo + logros
-- [ ] Quiz con feedback inmediato, dots de progreso, pantalla de logro (confetti, XP, racha, badge). Certificado.
+## Fase 7 — Quiz interactivo + logros ✅
+- [x] `QuizService` (view sin respuestas correctas + submit server-graded; patch XP). Ruta `/quiz/:id` (`Quiz`): responder **una pregunta a la vez** con **dots de progreso**, opciones seleccionables, "Next/See results". Submit → calificación del servidor.
+- [x] **Pantalla de logro**: tarjeta oscura con **confetti** (CSS, `prefers-reduced-motion`), trofeo/flag según passed, score/XP/insignias nuevas, X/N correctas, botones Back to course / Retry. **Review por pregunta** (correcta en verde con ✓, elegida-incorrecta tachada en berry con ✕, explicación en callout) — feedback honesto sin exponer respuestas en el view.
+- [x] **Certificado** `/certificate/:id` imprimible (award, nombre, curso, instructor, fecha localizada EN/ES, branding, `@media print`). Callout + link desde la vista de curso al 100%.
+- [x] Verificado funcional: quiz submit **+120 XP** (review correcto/incorrecto), curso SQL completado → certificado real. Screenshots answer/result/certificate 390/desktop. **0 console.error**. Build verde.
 
 ## Fase 8 — Paneles por rol
 - [ ] Panel instructor (crear/editar curso → módulos → lecciones → quiz). Panel estudiante (mis cursos, progreso, certificados).

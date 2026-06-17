@@ -238,6 +238,7 @@ interface FlatLesson {
                     <li>
                       <a
                         [routerLink]="['/quiz', q.id]"
+                        [queryParams]="{ course: c.id }"
                         class="flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm transition-colors hover:bg-white"
                       >
                         <span
