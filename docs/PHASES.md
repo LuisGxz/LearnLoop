@@ -28,9 +28,12 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] `QuizService`: vista de quiz **sin filtrar respuestas correctas**, submit → **calificación automática** + passed + XP escalado + QUIZ_ACE + per-question correct/explicación. `QuizAttempt` registrado.
 - [x] Controllers (`/api/courses`, `/api/quizzes`, learning) + 403 de method-security en ProblemDetail. **6 tests** (flujo e2e author→enroll→complete→quiz-ace con badges en H2 + JWT + contexto). Verificado por curl: catálogo/detalle/enroll/complete(+XP+badges)/quiz view+submit/RBAC 403.
 
-## Fase 4 — Frontend foundation
-- [ ] LanguageService (EN/ES), api-client + interceptor JWT + manejo de ProblemDetail, AuthService.
-- [ ] Layout/header (Nunito, paleta, racha/XP chips), estados loading/empty/error, primitivas (progress bar, badge).
+## Fase 4 — Frontend foundation ✅
+- [x] **i18n** EN/ES con signals (`LanguageService` + diccionario `copy.ts` + pipe `t` impuro + `LangToggle`); seed por `localStorage`/`navigator.language`, sin hydration mismatch.
+- [x] **api-client** promesa sobre HttpClient (`ApiClient`) + `ApiError.from` (ProblemDetail RFC-7807 → `{status, message, fields, isInfra}`) + **interceptor JWT** funcional (adjunta bearer a `/api`, limpia token en 401) + `TokenStore`. `AuthService` (signals user/ready, hydrate en `provideAppInitializer`, login/register/logout, `patch` XP/streak, helpers de rol). `models.ts` espeja todos los DTOs del backend.
+- [x] **Header** sticky (Nunito, paleta grow, logo infinity, nav role-aware Courses/My learning|Teach/About, chips racha 🔥 + XP 💎, menú de avatar con iniciales, `LangToggle`) + **shell** `App` (header + router-outlet). Rutas lazy + home hero real (lo reemplaza F5) + placeholder honesto para secciones futuras.
+- [x] **Primitivas**: `ll-progress-bar` (animada, a11y), `ll-spinner`, `ll-skeleton`, `ll-empty-state`, `ll-error-state` (retry + i18n), `ll-badge-chip` (tonos grow/sun/berry). Iconos **lucide-angular** (pick global).
+- [x] Build verde. Screenshots 390/768/1280 (`scripts/shots.mjs`, recipe `MSYS_NO_PATHCONV=1`) + **0 console.error** en `/`,`/about`,`/login` y toggle idioma.
 
 ## Fase 5 — Catálogo de cursos
 - [ ] Grid de cursos con thumbnails (gradiente), progreso, badges New/Done; saludo + meta semanal.
@@ -54,4 +57,4 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 
 ---
 
-### Estado actual: **Fase 0 en curso**
+### Estado actual: **Fases 0–4 ✅** (backend completo + frontend foundation) · **siguiente: Fase 5 — Catálogo de cursos**

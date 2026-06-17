@@ -1,3 +1,35 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+/**
+ * Lazy, standalone routes. Screen components land per phase (catalog F5,
+ * lesson F6, quiz F7, role panels/login F8, about F9); placeholders keep the
+ * nav resolvable until then.
+ */
+export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/home').then((m) => m.Home),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'Sign in' },
+  },
+  {
+    path: 'learning',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'My learning' },
+  },
+  {
+    path: 'teach',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'Teach' },
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'About' },
+  },
+  { path: '**', redirectTo: '' },
+];

@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './layout/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, Header],
+  template: `
+    <ll-header />
+    <main class="min-h-[calc(100vh-4rem)]">
+      <router-outlet />
+    </main>
+  `,
 })
-export class App {
-  protected readonly title = signal('LearnLoop');
-}
+export class App {}
