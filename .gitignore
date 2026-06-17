@@ -1,0 +1,21 @@
+# Root ignores for the LearnLoop monorepo (backend/ + frontend/ also have their own)
+
+# Java / Maven
+backend/target/
+*.class
+
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Secrets / env
+.env
+.env.*
+*.local
+.azure-secrets.local
+
+# OS / IDE
+.DS_Store
+.idea/
+*.iml

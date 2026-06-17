@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* ── LearnLoop design system — friendly / motivating (Duolingo-like) ───── */
+@theme {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-grow-50: #f2fbf4;
+  --color-grow-100: #e1f5e7;
+  --color-grow-500: #46b96a;
+  --color-grow-600: #3ba55c;
+
+  --color-sun-100: #fdefd7;
+  --color-sun-500: #f5a623;
+
+  --color-berry-100: #f0e6fa;
+  --color-berry-500: #9c5fd4;
+
+  --color-ink-50: #fafcfa;
+  --color-ink-100: #eef3ef;
+  --color-ink-200: #dce5df;
+  --color-ink-400: #8c9b92;
+  --color-ink-600: #52645a;
+  --color-ink-900: #26342b;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    margin: 0;
+    background: var(--color-ink-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-grow-600);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-grow-100);
+    color: var(--color-ink-900);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

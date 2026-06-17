@@ -1,0 +1,13 @@
+package dev.learnloop.api;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LearnloopApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LearnloopApiApplication.class, args);
+	}
+
+}
