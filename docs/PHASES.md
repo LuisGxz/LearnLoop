@@ -65,10 +65,14 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] **`/about`** pública bilingüe a paridad FinPulse: lead + chips + botones + **credenciales demo** · Alcance (bullets) · Auth/seguridad · Integridad del dominio · Performance/UX · Testing · **Arquitectura + diagrama** ASCII · **Tabla de patrones** · Decisiones/trade-offs + link a TECHNICAL.md.
 - [x] Verificado: tour auto-start + spotlight, help panel, /about (3 breakpoints), **0 console.error**. Build verde.
 
-## Fase 10 — Pulido + tests + deploy
-- [ ] Responsive 3 breakpoints (screenshots), animaciones, 0 console.error. E2E (flujo + tour). README + TECHNICAL.md. CI.
-- [ ] Deploy: MySQL free + Azure F1 (Java jar) + Pages. E2E en prod. Card en `website/src/data/site.ts`.
+## Fase 10 — Pulido + tests + deploy (código ✅ / deploy ⏳)
+- [x] Responsive 3 breakpoints (screenshots por fase), animaciones + `prefers-reduced-motion`, **0 console.error** en todas las pantallas.
+- [x] **E2E Playwright (5)**: guest browse+detalle, tour auto-start+descartable, dashboard estudiante, quiz→resultado, instructor crea+borra curso. Cada test **falla ante cualquier console.error/pageerror**. `playwright.config.ts` + `npm run e2e`. Backend `mvnw test` (6, H2) verde.
+- [x] **README** con capturas + **TECHNICAL.md** (arquitectura, dominio, gamificación, integridad del quiz, trade-offs) + **DEPLOY.md**. **CI** `.github/workflows/ci.yml` (backend mvn test H2 + frontend npm ci/build). `.gitignore` de artefactos Playwright.
+- [x] Repo GitHub público **`LuisGxz/LearnLoop`** creado + push (master). Card del portfolio con `source` (sigue en "soon" hasta verificar prod).
+- [ ] ⏳ **Gate externo (usuario):** crear cluster **TiDB Serverless** (free) + pasar host/user/password. Ver `docs/DEPLOY.md`.
+- [ ] Tras eso (yo, autónomo): Azure F1 Java (jar) con app settings (DB + `JWT_SECRET` ya generado en `.azure-secrets.local`) · Pages con API base inyectada · **E2E en prod** (0 console.error) · flip card a "live" + URL · actualizar tabla del CLAUDE.md del workspace.
 
 ---
 
-### Estado actual: **Fases 0–5 ✅** (backend completo + foundation + catálogo) · **siguiente: Fase 6 — Vista de lección**
+### Estado actual: **Fases 0–9 ✅ · F10 código/tests/docs/CI/repo ✅** · **deploy ⏳ esperando cluster TiDB Serverless (free) del usuario**
