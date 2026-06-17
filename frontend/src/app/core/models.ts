@@ -81,6 +81,46 @@ export interface CourseDetail {
   completed: boolean;
 }
 
+// ── Write (instructor course builder) ──────────────────────────────────
+export interface OptionInput {
+  text: string;
+  correct: boolean;
+}
+
+export interface QuestionInput {
+  text: string;
+  explanation: string;
+  options: OptionInput[];
+}
+
+export interface QuizInput {
+  title: string;
+  passingScore: number;
+  questions: QuestionInput[];
+}
+
+export interface LessonInput {
+  title: string;
+  type: LessonType;
+  durationMin: number;
+  content: string;
+}
+
+export interface ModuleInput {
+  title: string;
+  lessons: LessonInput[];
+  quiz: QuizInput | null;
+}
+
+export interface CourseInput {
+  title: string;
+  description: string;
+  category: string;
+  level: string;
+  coverGradient: string;
+  modules: ModuleInput[];
+}
+
 // ── Learning / gamification ────────────────────────────────────────────
 export interface BadgeDto {
   code: string;

@@ -53,8 +53,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] **Certificado** `/certificate/:id` imprimible (award, nombre, curso, instructor, fecha localizada EN/ES, branding, `@media print`). Callout + link desde la vista de curso al 100%.
 - [x] Verificado funcional: quiz submit **+120 XP** (review correcto/incorrecto), curso SQL completado → certificado real. Screenshots answer/result/certificate 390/desktop. **0 console.error**. Build verde.
 
-## Fase 8 — Paneles por rol
-- [ ] Panel instructor (crear/editar curso → módulos → lecciones → quiz). Panel estudiante (mis cursos, progreso, certificados).
+## Fase 8 — Paneles por rol ✅
+- [x] **Login** orientador `/login` (tabs entrar/registro, selector de rol, **quick-fill demo** estudiante/instructor + "qué hace cada rol", errores por campo del ProblemDetail, redirect post-login a home por rol). **Guards** `authGuard`/`roleGuard` (student→/teach redirige a `/`, guest→ruta gated redirige a `/login?redirect`).
+- [x] **Panel estudiante** `/learning`: enrollments divididos **In progress / Completed**, barra de progreso, Resume/View, **link a certificado** en completados. Estados loading/empty(enseña)/error.
+- [x] **Panel instructor** `/teach`: `mine()` con cover, nivel, conteos, **Edit/View/Delete** (confirm). **Course builder** `/teach/new` + `/teach/:id/edit`: formularios reactivos anidados **módulos → lecciones (tipo/min/contenido) → quiz opcional → preguntas → opciones** (radio de correcta, swatches de cover, validación). `CourseService.create/update/delete`.
+- [x] Verificado funcional: **crear curso end-to-end** (builder → `/course/5` → aparece en `/teach`), edit hidrata, delete, guards, **0 console.error**. Screenshots login/teach/learning/builder 390/768/1280. Limpieza del curso de prueba. Build verde.
 
 ## Fase 9 — Demo guiada + /about
 - [ ] Login orientador, badge de rol (can/can't), tour coach-marks por rol, panel "Cómo explorar", empty states que enseñan, hint cross-rol ("crea un curso como instructor y tómalo como estudiante").

@@ -1,10 +1,7 @@
 import { Routes } from '@angular/router';
+import { authGuard, roleGuard } from './core/auth/guards';
 
-/**
- * Lazy, standalone routes. Screen components land per phase (catalog F5,
- * lesson F6, quiz F7, role panels/login F8, about F9); placeholders keep the
- * nav resolvable until then.
- */
+/** Lazy, standalone routes with auth/role guards on the gated areas. */
 export const routes: Routes = [
   {
     path: '',
@@ -17,26 +14,37 @@ export const routes: Routes = [
   },
   {
     path: 'quiz/:id',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/quiz').then((m) => m.Quiz),
   },
   {
     path: 'certificate/:id',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/certificate').then((m) => m.Certificate),
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'Sign in' },
+    loadComponent: () => import('./pages/login').then((m) => m.Login),
   },
   {
     path: 'learning',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'My learning' },
+    canActivate: [roleGuard('STUDENT')],
+    loadComponent: () => import('./pages/learning').then((m) => m.Learning),
   },
   {
     path: 'teach',
-    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'Teach' },
+    canActivate: [roleGuard('INSTRUCTOR')],
+    loadComponent: () => import('./pages/teach').then((m) => m.Teach),
+  },
+  {
+    path: 'teach/new',
+    canActivate: [roleGuard('INSTRUCTOR')],
+    loadComponent: () => import('./pages/course-builder').then((m) => m.CourseBuilder),
+  },
+  {
+    path: 'teach/:id/edit',
+    canActivate: [roleGuard('INSTRUCTOR')],
+    loadComponent: () => import('./pages/course-builder').then((m) => m.CourseBuilder),
   },
   {
     path: 'about',

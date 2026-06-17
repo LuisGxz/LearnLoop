@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiClient } from '../api/api-client';
-import { CourseDetail, CourseSummary } from '../models';
+import { CourseDetail, CourseInput, CourseSummary } from '../models';
 
 /** Read/write access to courses. Screens own their own loading state. */
 @Injectable({ providedIn: 'root' })
@@ -19,5 +19,17 @@ export class CourseService {
 
   detail(id: number): Promise<CourseDetail> {
     return this.api.get<CourseDetail>(`/courses/${id}`);
+  }
+
+  create(input: CourseInput): Promise<CourseDetail> {
+    return this.api.post<CourseDetail>('/courses', input);
+  }
+
+  update(id: number, input: CourseInput): Promise<CourseDetail> {
+    return this.api.put<CourseDetail>(`/courses/${id}`, input);
+  }
+
+  delete(id: number): Promise<void> {
+    return this.api.delete<void>(`/courses/${id}`);
   }
 }
