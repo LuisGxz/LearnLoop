@@ -41,8 +41,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] Estados **loading** (skeletons de card), **empty** (enseña) y **error** (retry). Limpieza: borrado curso de prueba "My Course" (basura de curls F3).
 - [x] Screenshots 390/768/1280 guest + estudiante (gradientes, stats, progreso, badges) con datos reales (Docker MySQL + seed). **0 console.error** (guest + authed + toggle ES). Build verde.
 
-## Fase 6 — Vista de lección
-- [ ] Player (placeholder video) + lista de módulos/lecciones lateral + barra de progreso del curso; completar lección (+XP, animación).
+## Fase 6 — Vista de lección ✅
+- [x] `LearningService` (enroll/completeLesson/myEnrollments/certificate; cada acción gamificante hace `auth.patch` de XP/streak). Ruta `/course/:id` (`Course`): header de progreso del curso, **player** (VIDEO → cover gradiente + play + scrubber; TEXT → tarjeta de lectura con el contenido), label módulo·lección, descripción.
+- [x] **Sidebar** de módulos/lecciones con estado (✓ done / activo "watching now" / número) + ítem de **quiz** (link `/quiz/:id`, "Quiz passed · %"). Selección de lección sin recargar.
+- [x] **Completar lección**: gating (no auth → /login?redirect; no inscrito → Enroll; inscrito → "Complete +N XP") → patch local del snapshot, **XP flash** flotante (anim, `prefers-reduced-motion`), avance a la siguiente sin completar, callout "Course complete!" + link a certificado al 100%.
+- [x] Verificado funcional: completar lección **+50 XP** (620→670) + flash + 0 console.error. Screenshots 390/768/1280 (estudiante). Build verde.
 
 ## Fase 7 — Quiz interactivo + logros
 - [ ] Quiz con feedback inmediato, dots de progreso, pantalla de logro (confetti, XP, racha, badge). Certificado.

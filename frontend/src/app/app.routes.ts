@@ -13,8 +13,17 @@ export const routes: Routes = [
   },
   {
     path: 'course/:id',
+    loadComponent: () => import('./pages/course').then((m) => m.Course),
+  },
+  {
+    path: 'quiz/:id',
     loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
-    data: { title: 'Course' },
+    data: { title: 'Quiz' },
+  },
+  {
+    path: 'certificate/:id',
+    loadComponent: () => import('./pages/placeholder').then((m) => m.Placeholder),
+    data: { title: 'Certificate' },
   },
   {
     path: 'login',
