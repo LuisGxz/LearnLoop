@@ -12,10 +12,10 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [ ] git init (monorepo backend+frontend), .gitignore, README inicial.
 - [ ] MySQL local por Docker + `application.properties` (datasource + JWT secret vía env).
 
-## Fase 1 — Backend: dominio y datos
-- [ ] Entidades JPA: User(role), Course, Module, Lesson, Enrollment, LessonProgress, Quiz, Question, Option, QuizAttempt, Badge/UserBadge.
-- [ ] Flyway migraciones + seed realista (2-3 cursos con módulos/lecciones/quizzes, instructor+student demo).
-- [ ] Repositorios Spring Data. Config MySQL.
+## Fase 1 — Backend: dominio y datos ✅
+- [x] 14 entidades JPA (User, Course, CourseModule, Lesson, Quiz, Question, QuestionOption, Enrollment, LessonProgress, QuizAttempt, Badge, UserBadge + enums Role/LessonType) con relaciones, índices y unique constraints vía anotaciones.
+- [x] Esquema gestionado por Hibernate (`ddl-auto=update`) + `DataSeeder` (CommandLineRunner, bcrypt) con 3 cursos realistas (Product Design/SQL/React), módulos/lecciones/quizzes/preguntas, 4 badges, instructor+student demo, enrollment con progreso. (Flyway → endurecimiento de prod, diferido.)
+- [x] Repositorios Spring Data. Config MySQL (`application.properties`, env-overridable). Verificado: arranca, siembra (6 módulos/13 lecciones/5 preguntas/15 opciones), 0 errores.
 
 ## Fase 2 — Auth (JWT + RBAC)
 - [ ] Spring Security: register/login, bcrypt, JWT (jjwt) filtro, `UserDetailsService`.

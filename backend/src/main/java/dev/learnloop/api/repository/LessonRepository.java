@@ -1,0 +1,6 @@
+package dev.learnloop.api.repository;
+
+import dev.learnloop.api.domain.Lesson;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LessonRepository extends JpaRepository<Lesson, Long> {}
