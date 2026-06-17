@@ -17,10 +17,10 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] Esquema gestionado por Hibernate (`ddl-auto=update`) + `DataSeeder` (CommandLineRunner, bcrypt) con 3 cursos realistas (Product Design/SQL/React), módulos/lecciones/quizzes/preguntas, 4 badges, instructor+student demo, enrollment con progreso. (Flyway → endurecimiento de prod, diferido.)
 - [x] Repositorios Spring Data. Config MySQL (`application.properties`, env-overridable). Verificado: arranca, siembra (6 módulos/13 lecciones/5 preguntas/15 opciones), 0 errores.
 
-## Fase 2 — Auth (JWT + RBAC)
-- [ ] Spring Security: register/login, bcrypt, JWT (jjwt) filtro, `UserDetailsService`.
-- [ ] Roles INSTRUCTOR/STUDENT, `@PreAuthorize`. `@RestControllerAdvice` → ProblemDetail con errores por campo.
-- [ ] Tests (JUnit): emisión/validación JWT, hashing, reglas RBAC.
+## Fase 2 — Auth (JWT + RBAC) ✅
+- [x] Spring Security stateless: `JwtService` (jjwt 0.12, HS384), `JwtAuthenticationFilter`, `CustomUserDetailsService` + `AppUserPrincipal` (expone id/role), `SecurityConfig` (CORS, method security, rutas públicas vs auth), `PasswordEncoder` bcrypt.
+- [x] `AuthService` (register dup→409+field, login vía AuthenticationManager) + `AuthController` (`/api/auth/register|login|me`). `@RestControllerAdvice` → **ProblemDetail con `fields`** por campo (422 validación, 409, 401, 500).
+- [x] Tests (5): JwtService (round-trip/tamper/garbage/otra-clave) + contextLoads con **H2** (CI-safe). Verificado por curl: login→JWT, me, 401, 409+field, 422 por campo.
 
 ## Fase 3 — API de cursos, inscripción y progreso
 - [ ] CRUD cursos/módulos/lecciones (instructor dueño → 403 ajenas). Catálogo público + detalle.
