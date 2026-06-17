@@ -22,10 +22,11 @@ LMS con gamificación. **Angular 20 + Tailwind v4** (front) + **Spring Boot 3.5 
 - [x] `AuthService` (register dup→409+field, login vía AuthenticationManager) + `AuthController` (`/api/auth/register|login|me`). `@RestControllerAdvice` → **ProblemDetail con `fields`** por campo (422 validación, 409, 401, 500).
 - [x] Tests (5): JwtService (round-trip/tamper/garbage/otra-clave) + contextLoads con **H2** (CI-safe). Verificado por curl: login→JWT, me, 401, 409+field, 422 por campo.
 
-## Fase 3 — API de cursos, inscripción y progreso
-- [ ] CRUD cursos/módulos/lecciones (instructor dueño → 403 ajenas). Catálogo público + detalle.
-- [ ] Enrollment, marcar lección completa → progreso + XP + racha. Certificado al 100%.
-- [ ] Quiz: obtener preguntas, enviar respuestas → calificación automática + XP. Tests del dominio crítico.
+## Fase 3 — API de cursos, inscripción y progreso ✅
+- [x] `CourseService`: catálogo público + detalle (con progreso del viewer), `mine`, create/update/delete con **ownership** (403 ajenas). Grafo curso→módulos→lecciones→quiz→preguntas→opciones vía DTOs.
+- [x] `EnrollmentService`: enroll, mis cursos, **completar lección** → XP + racha + badges (FIRST_LESSON/STREAK_7/COURSE_DONE) + % progreso + completedAt; **certificado** al 100%. `GamificationService` (XP/streak/badges).
+- [x] `QuizService`: vista de quiz **sin filtrar respuestas correctas**, submit → **calificación automática** + passed + XP escalado + QUIZ_ACE + per-question correct/explicación. `QuizAttempt` registrado.
+- [x] Controllers (`/api/courses`, `/api/quizzes`, learning) + 403 de method-security en ProblemDetail. **6 tests** (flujo e2e author→enroll→complete→quiz-ace con badges en H2 + JWT + contexto). Verificado por curl: catálogo/detalle/enroll/complete(+XP+badges)/quiz view+submit/RBAC 403.
 
 ## Fase 4 — Frontend foundation
 - [ ] LanguageService (EN/ES), api-client + interceptor JWT + manejo de ProblemDetail, AuthService.

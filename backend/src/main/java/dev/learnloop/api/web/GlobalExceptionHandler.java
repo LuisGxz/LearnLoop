@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +43,12 @@ public class GlobalExceptionHandler {
     ProblemDetail onBadCredentials(Exception ex) {
         return ProblemDetail.forStatusAndDetail(
             HttpStatus.UNAUTHORIZED, "Incorrect email or password.");
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    ProblemDetail onAccessDenied(AccessDeniedException ex) {
+        return ProblemDetail.forStatusAndDetail(
+            HttpStatus.FORBIDDEN, "You don't have access to this action.");
     }
 
     @ExceptionHandler(Exception.class)
