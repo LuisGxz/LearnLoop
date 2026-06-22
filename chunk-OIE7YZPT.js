@@ -1,0 +1,1 @@
+var t={"t-1":"linear-gradient(135deg,#46B96A,#1E7A40)","t-2":"linear-gradient(135deg,#F5A623,#C97208)","t-3":"linear-gradient(135deg,#9C5FD4,#5F2DA0)","t-4":"linear-gradient(135deg,#3E9DBF,#1E6480)"},r=t["t-1"];function e(n){return t[n]??r}export{e as a};
